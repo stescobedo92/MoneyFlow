@@ -1,21 +1,39 @@
-﻿@model IEnumerable<MoneyFlow.Entities.Service>
+﻿@model IEnumerable<MoneyFlow.Models.ServiceViewModel>
 @{
 }
 
-<table class="table">
-    <thead>
-        <tr>            
-            <th>Name</th>
-            <th>Type</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var service in Model)
-        {
-            <tr>
-                <td>@service.Name</td>
-                <td>@service.Type</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Service</h2>
+    </div>
+    <div class="col-sm-6">
+        <a href="#" class="btn btn-success">New Service</a>
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var service in Model)
+                {
+                    <tr>
+                        <td>@service.Name</td>
+                        <td>@service.Type</td>
+                        <td>
+                            <a href="#" class="btn btn-primary btn-sm">Edit</a>
+                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
