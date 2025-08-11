@@ -9,9 +9,9 @@ public class AppDbContext : DbContext
     {
     }
 
-    DbSet<User> Users { get; set; }
-    DbSet<Service> Services { get; set; }
-    DbSet<Transaction> Transactions { get; set; }    
+    public DbSet<User> Users { get; set; }
+    public DbSet<Service> Services { get; set; }
+    public DbSet<Transaction> Transactions { get; set; }    
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

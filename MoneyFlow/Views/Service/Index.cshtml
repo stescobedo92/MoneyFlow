@@ -1,0 +1,21 @@
+﻿@model IEnumerable<MoneyFlow.Entities.Service>
+@{
+}
+
+<table class="table">
+    <thead>
+        <tr>            
+            <th>Name</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var service in Model)
+        {
+            <tr>
+                <td>@service.Name</td>
+                <td>@service.Type</td>
+            </tr>
+        }
+    </tbody>
+</table>
