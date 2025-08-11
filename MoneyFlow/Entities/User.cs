@@ -8,4 +8,5 @@ public class User
     public string Password { get; set; } = string.Empty;
 
     public ICollection<Service> Services { get; set; }
+    public ICollection<Transaction> Transactions { get; set; }
 }
