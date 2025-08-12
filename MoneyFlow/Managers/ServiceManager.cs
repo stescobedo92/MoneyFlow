@@ -33,11 +33,9 @@ public class ServiceManager(AppDbContext _dbContext)
 
     public ServiceViewModel GetServiceById(int serviceId)
     {
-        var service = _dbContext.Services.FirstOrDefault(s => s.ServiceId.Equals(serviceId));
+        var service = _dbContext.Services.Find(serviceId);
         if (service == null)
-        {
             throw new InvalidOperationException($"Service with ID {serviceId} not found.");
-        }
 
         var serviceModel = new ServiceViewModel
         {
@@ -52,12 +50,10 @@ public class ServiceManager(AppDbContext _dbContext)
 
     public int EditService(ServiceViewModel serviceViewModel)
     {
-        var service = _dbContext.Services.FirstOrDefault(s => s.ServiceId.Equals(serviceViewModel.ServiceId));
+        var service = _dbContext.Services.Find(serviceViewModel.ServiceId);
         
         if (service == null)
-        {
             throw new InvalidOperationException($"Service with ID {serviceViewModel.ServiceId} not found.");
-        }
 
         service.Name = serviceViewModel.Name;
         service.Type = serviceViewModel.Type;

@@ -10,10 +10,7 @@ public class ServiceController(ServiceManager _serviceManager) : Controller
     public IActionResult Index() => View(_serviceManager.GetAll(1));
 
     [HttpGet]
-    public IActionResult New()
-    {
-        return View();
-    }
+    public IActionResult New() => View();
 
     [HttpPost]
     public IActionResult New(ServiceViewModel serviceViewModel)
@@ -27,5 +24,20 @@ public class ServiceController(ServiceManager _serviceManager) : Controller
         ViewBag.message = "Error";
 
         return View();
+    }
+
+    [HttpGet]
+    public IActionResult Edit(int id) => View(_serviceManager.GetServiceById(id));
+
+    [HttpPost]
+    public IActionResult Edit(ServiceViewModel serviceViewModel)
+    {
+        if (!ModelState.IsValid) return View(serviceViewModel);
+
+        var response = _serviceManager.EditService(serviceViewModel);
+        if(response == 1) return RedirectToAction("Index");
+
+        ViewBag.message = "Error";
+        return View(serviceViewModel);
     }
 }
