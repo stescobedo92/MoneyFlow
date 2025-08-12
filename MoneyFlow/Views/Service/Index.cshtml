@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MoneyFlow.Models.ServiceViewModel>
+@{
+}
+
+<div class="row">
+    <div class="col-sm-6">
+        <h2>Service</h2>
+    </div>
+    <div class="col-sm-6 text-end">
+        <a href="/Service/New" class="btn btn-success">New Service</a>
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-sm-12">
+        <table class="table table-bordered table-striped">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Type</th>
+                    <th style="width:150px"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var service in Model)
+                {
+                    <tr>
+                        <td>@service.Name</td>
+                        <td>@service.Type</td>
+                        <td style="width:150px">
+                            <a href="/Service/Edit/@service.ServiceId" class="btn btn-primary btn-sm">Edit</a>
+                            <button class="btn btn-danger btn-sm" onclick="deleteService(@service.ServiceId)">Delete</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@section Scripts {
+    <script>
+        function deleteService(serviceId) {
+            if (confirm("Are you sure you want to delete this service?")) {
+                window.location.href = '@Url.Action("Delete", "Service")' + '?id=' + serviceId;
+            }
+        }
+    </script>
+}

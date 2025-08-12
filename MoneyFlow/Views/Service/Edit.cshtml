@@ -1,0 +1,37 @@
+﻿@model ServiceViewModel
+@{
+}
+
+<div class="row mt-4">
+    <div class="col-sm-6 offset-sm-3">
+        <h2>Edit Service</h2>
+        <form asp-controller="Service" asp-action="Edit" method="post">
+            <input type="hidden" asp-for="ServiceId" />
+            <div class="mb-3">
+                <label class="form-label">Name</label>
+                <input type="text" class="form-control" asp-for="Name" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Type</label>
+                <select asp-for="Type" class="form-select" id="inputServiceType">
+                    <option value="0" disabled selected>-- Select Type --</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+                <span asp-validation-for="Type" class="text-danger"></span>
+            </div>
+
+            @if (!string.IsNullOrEmpty(ViewBag.message))
+            {
+                <div class="alert alert-danger" role="alert">
+                    @ViewBag.message
+                </div>
+            }
+
+            <div class="d-grid gap-2 d-md-block">
+                <button class="btn btn-success" type="submit">Save</button>
+                <a asp-controller="Service" asp-action="Index" class="btn btn-warning">Back</a>
+            </div>
+        </form>
+    </div>
