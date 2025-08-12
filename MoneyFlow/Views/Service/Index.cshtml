@@ -19,6 +19,7 @@
                 <tr>
                     <th>Name</th>
                     <th>Type</th>
+                    <th style="width:150px"></th>
                 </tr>
             </thead>
             <tbody>
@@ -27,9 +28,9 @@
                     <tr>
                         <td>@service.Name</td>
                         <td>@service.Type</td>
-                        <td>
+                        <td style="width:150px">
                             <a href="/Service/Edit/@service.ServiceId" class="btn btn-primary btn-sm">Edit</a>
-                            <a href="#" class="btn btn-danger btn-sm">Delete</a>
+                            <button class="btn btn-danger btn-sm" onclick="deleteService(@service.ServiceId)">Delete</button>
                         </td>
                     </tr>
                 }
@@ -37,3 +38,12 @@
         </table>
     </div>
 </div>
+@section Scripts {
+    <script>
+        function deleteService(serviceId) {
+            if (confirm("Are you sure you want to delete this service?")) {
+                window.location.href = '@Url.Action("Delete", "Service")' + '?id=' + serviceId;
+            }
+        }
+    </script>
+}

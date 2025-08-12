@@ -63,4 +63,16 @@ public class ServiceManager(AppDbContext _dbContext)
 
         return affectedRows;
     }
+
+    public int DeleteService(int serviceId) 
+    {
+        var service = _dbContext.Services.Find(serviceId);
+        if (service == null)
+            throw new InvalidOperationException($"Service with ID {serviceId} not found.");
+
+        _dbContext.Services.Remove(service);
+        var affectedRows = _dbContext.SaveChanges();
+        
+        return affectedRows;
+    }
 }

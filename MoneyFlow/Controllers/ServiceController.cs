@@ -40,4 +40,10 @@ public class ServiceController(ServiceManager _serviceManager) : Controller
         ViewBag.message = "Error";
         return View(serviceViewModel);
     }
+
+    public IActionResult Delete(int id) 
+    {
+        _serviceManager.DeleteService(id);
+        return RedirectToAction("Index");
+    }
 }
