@@ -7,7 +7,7 @@
         <h2>Service</h2>
     </div>
     <div class="col-sm-6 text-end">
-        <a href="/Service/New" class="btn btn-success">New Service</a>
+        <a href="/Service/New" class="btn btn-success"><i class="bi bi-plus-circle"></i> New Service</a>
     </div>
 </div>
 <hr />
@@ -29,8 +29,8 @@
                         <td>@service.Name</td>
                         <td>@service.Type</td>
                         <td style="width:150px">
-                            <a href="/Service/Edit/@service.ServiceId" class="btn btn-primary btn-sm">Edit</a>
-                            <button class="btn btn-danger btn-sm" onclick="deleteService(@service.ServiceId)">Delete</button>
+                            <a href="/Service/Edit/@service.ServiceId" class="btn btn-primary btn-sm"><i class="bi bi-pencil"></i></a>
+                            <button class="btn btn-danger btn-sm" onclick="deleteService(@service.ServiceId)"><i class="bi bi-trash3-fill"></i></button>
                         </td>
                     </tr>
                 }
@@ -38,8 +38,7 @@
         </table>
     </div>
 </div>
-@section Scripts {
-
+@section Scripts {    
     <script>
         function deleteService(serviceId) {
             Swal.fire({
