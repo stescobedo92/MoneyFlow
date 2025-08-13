@@ -1,0 +1,40 @@
+﻿@model TransactionViewModel
+@{
+}
+
+<div class="row mt-4">
+    <div class="col-sm-6 offset-sm-3">
+        <h2>New Transaction</h2>
+        <form asp-controller="Transaction" asp-action="New" method="post">
+            <div class="mb-3">
+                <label class="form-label">Type</label>
+                <select class="form-select" id="cboTypeService">
+                    <option value="0" disabled selected>-- Select Type --</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Service</label>
+                <select class="form-select" id="cboService">
+                    <option value="0" disabled selected>-- Select Type --</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Comment</label>
+                <input type="text" class="form-control" id="txtComment" autocomplete="off" />
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Date</label>
+                <input type="date" class="form-control" id="txtDate" autocomplete="off"/>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Total Amount</label>
+                <input type="number" class="form-control" id="txtTotalAmount" autocomplete="off" />
+            </div>
+
+            <div class="d-grid gap-2 d-md-block">
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
