@@ -8,7 +8,7 @@
         <form asp-controller="Transaction" asp-action="New" method="post">
             <div class="mb-3">
                 <label class="form-label">Type</label>
-                <select class="form-select" id="cboTypeService">
+                <select class="form-select" id="cboTypeService" onchange="ShowServices()">
                     <option value="0" disabled selected>-- Select Type --</option>
                     <option value="income">Income</option>
                     <option value="expense">Expense</option>
@@ -17,7 +17,7 @@
             <div class="mb-3">
                 <label class="form-label">Service</label>
                 <select class="form-select" id="cboService">
-                    <option value="0" disabled selected>-- Select Type --</option>
+                    <option></option>
                 </select>
             </div>
             <div class="mb-3">
@@ -48,5 +48,37 @@
                 width: '100%',
             });
         });
+
+
+        async function ShowServices() {
+            try {
+                const typeService = $('#cboTypeService').val();
+
+                const fetchResponse = await fetch(`/Transaction/SericeByTypes?typeService=${typeService}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json;charset=UTF-8',
+                    }
+                });
+                
+                if (fetchResponse.ok) {
+                    const data = await fetchResponse.json();
+
+                    const comboService = $('#cboService');
+                    comboService.empty();
+                    comboService.append(new Option("-- select --", ""));
+
+                    data.forEach((serviceItem) => {
+                        comboService.append(new Option(serviceItem.name, serviceItem.id));
+                    });
+                    
+                    comboService.trigger('change');
+                } else {
+                    console.error("Request error:", fetchResponse.status, fetchResponse.statusText);
+                }
+            } catch (error) {
+                console.error("Fetch error request:", error);
+            }
+        }
     </script>
 }

@@ -76,12 +76,10 @@ public class ServiceManager(AppDbContext _dbContext)
         return affectedRows;
     }
 
-    public IEnumerable<ServiceViewModel> GetByType(int userId, string type) 
-    {
-        return _dbContext.Services.Where(item => item.UserId.Equals(userId) && item.Type.Equals(type)).Select(item => new ServiceViewModel 
+    public IEnumerable<ServiceViewModel> GetByType(int userId, string type) => _dbContext.Services
+        .Where(item => item.UserId.Equals(userId) && item.Type.Equals(type)).Select(item => new ServiceViewModel
         {
             ServiceId = item.ServiceId,
             Name = item.Name,
         }).ToList();
-    }
 }
